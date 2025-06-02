@@ -1,0 +1,17 @@
+services:
+  minio:
+    image: minio/minio
+    container_name: ugoeat-minio
+    volumes:
+      - minio-data:/data
+      - ./setup-minio.sh:/setup-minio.sh
+    env_file:
+      - .env
+    entrypoint: ["/bin/sh", "/setup-minio.sh"]
+    ports:
+      - 9000:9000
+      - 9001:9001
+
+
+volumes:
+  minio-data:
