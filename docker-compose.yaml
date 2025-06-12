@@ -9,9 +9,14 @@ services:
       - .env
     entrypoint: ["/bin/sh", "/setup-minio.sh"]
     ports:
-      - 9000:9000
+      # - 9000:9000
       - 9001:9001
 
+  minio-nginx:
+    image: nginx:alpine
+    container_name: minio-nginx
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
 
 volumes:
   minio-data:
