@@ -5,8 +5,11 @@ declare user="${MINIO_ROOT_USER}"
 declare password="${MINIO_ROOT_PASSWORD}"
 declare host="http://localhost:9000"
 
+# Store license
+echo "${MINIO_LICENSE}" > /minio.license
+
 # Check if the environment variables are set, if not, set them to default values
-minio server /data --console-address :9001 &
+minio server /data --console-address :9001 --license /minio.license &
 
 echo "⏳ Waiting for MinIO..."
 until curl -s $host/minio/health/live > /dev/null; do
