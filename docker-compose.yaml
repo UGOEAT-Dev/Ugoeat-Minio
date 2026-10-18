@@ -1,6 +1,6 @@
 services:
   minio:
-    image: minio/minio
+    image: quay.io/minio/aistor/minio:latest
     container_name: ugoeat-minio
     volumes:
       - minio-data:/data
